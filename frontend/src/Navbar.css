@@ -1,0 +1,232 @@
+.Navbar_container{
+    height: 100px;
+    width: 100%;
+    /* background-color: wheat; */
+    display: flex;
+    /* justify-content: start; */
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    user-select: none;
+}
+
+.logo_img{
+    height: 100px;
+}
+
+.navbar_components_container{
+    /* width: 100%; */
+    display:flex ;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-left: 100px; */
+     gap: 30px;
+     
+}
+
+.navbar_components{
+    height: 30px;
+    background: white;
+    color: black;
+    border: none;
+    font-size: 18px;
+     
+     
+} 
+
+.search_box{
+    background-color: rgb(229, 248, 248);
+    border: 2px solid gray;
+    border-radius: 20px;
+    height: 40px;
+    /* width: 350px; */
+}
+
+.search-box{
+    position: relative;
+    width: 350px;
+}
+
+.search-box input{
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+}
+
+.search-icon{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+.profile{
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 2px;
+    margin-left:10px;
+}
+
+
+.menu-icon{
+    font-size:30px;
+}
+
+.search-btn{
+        display: none;
+        border: none;
+        background: white;
+        color:#666;
+        font-size: 18px;
+         
+        /* cursor: pointer; */
+    }
+
+.search-profile-menu_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+
+}
+
+.only-search-btn{
+    padding:0px;
+}
+
+
+
+
+
+
+
+
+.category-section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 50px;
+    gap: 10px;
+}
+
+.category-container{ 
+    display:flex;
+    overflow-x:auto;
+    gap:15px;
+    scroll-behavior:smooth;
+    /* scrollbar-width:none; */
+    flex: 1;
+    width: 100%;
+}
+
+.category-container::-webkit-scrollbar{
+    display:none;
+}
+
+.scroll-btn{
+    width:50px;
+    height:50px;
+    background-color: rgb(143, 175, 230);
+    visibility: 0.5;
+    border:none;
+    border-radius:20%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    
+    
+}
+
+.scroll-btn span{
+    font-size:40px;
+    font-weight: 200;
+}
+
+ 
+.category-component{
+    text-align: center;
+    min-width: 90px;
+    flex-shrink: 0;
+    /* border: 1px solid rgb(141, 131, 131); */
+    border-radius: 20px;
+
+}
+
+.category-component .category-img{
+
+    width: 50px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+}
+
+.category-component .category-img img{
+    height: 50px;
+    width: 50px;
+    border-top-left-radius: 20px;
+    /* border-bottom-left-radius: 20px; */
+}
+
+.category-component .category-name{
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 15px 10px;
+    /* border-top-right-radius: 25px; */
+    border-bottom-right-radius: 20px;
+    
+}
+
+ 
+ 
+
+@media(max-width:1035px){
+    .search-box{
+        width: 250px;
+    }
+    .navbar_components_container{
+        gap: 15px;
+    }
+}
+
+@media(max-width:895px){
+    img.logo_img{
+        width: 170px;
+        height: 80%;
+    }
+}
+
+
+@media (max-width:775px){
+
+    .search-box{
+        display:none;
+    }
+
+    .search-btn{
+        display:block;
+    }
+
+}
+
+
+
+
+
+@media (max-width:668px){
+    .navbar_components_container{
+        display: none;
+    }
+    /* .profile_photo{
+        display: none;
+    } */
+    .menu-icon{
+        display: block;
+    }
+     
+}
