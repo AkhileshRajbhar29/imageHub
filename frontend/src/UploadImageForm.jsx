@@ -93,6 +93,7 @@ function UploadImageForm({images, setImages}){
 
                 <input 
                 type="text" 
+                maxLength={24}
                 placeholder="Title"
                 onChange={(e)=>{
                     setFormData({
@@ -133,6 +134,7 @@ function UploadImageForm({images, setImages}){
                     <label>Description</label>
                     <textarea 
                     name="image-description" 
+                    maxLength={200}
                     id="description" 
                     className="description-textarea"
                     value={formData.description}
@@ -151,6 +153,7 @@ function UploadImageForm({images, setImages}){
                 name="tag" 
                 id="tag" 
                 className="image-tag" 
+                maxLength={75}
                 placeholder="write Tag"
                 value={formData.tags}
 
@@ -165,33 +168,45 @@ function UploadImageForm({images, setImages}){
     
                 <div className="price-input">
                     <input 
-                    type="number" 
+                    type="number"
+                    min="0" 
+                    max="9999999"
                     name="originalPrice" 
                     id="original-price" 
                     placeholder="Original Price"
                     value={formData.originalPrice}
 
-                    onChange={(e)=> setFormData(
-                        {
-                            ...formData, 
-                            originalPrice:e.target.value
+                    onChange={(e) => {
+                        const value = e.target.value;
 
+                        if (value === "" || Number(value) <= 9999999){
+                            setFormData({
+                                ...formData,
+                                originalPrice: value,
+                            });
                         }
-                    )}/> 
+                    }}
+                     /> 
 
                     <input 
-                    type="number" 
+                    type="number"
+                    // min="0"
+                    // max="100" 
                     name="offer" 
                     id="offer" 
                     placeholder="offer in %" 
                     value={formData.offer}
     
-                    onChange={(e)=>
-                        setFormData({
-                            ...formData,
-                            offer:e.target.value
-                        })
+                    onChange={(e) => {
+                    const value = e.target.value;
+
+                   if (value === "" || Number(value) <= 100) {
+                    setFormData({
+                        ...formData,
+                         offer: value,
+                       });
                     }
+                }}
                     />    
                 </div> 
                 <span className="final-price">Final Price: ₹{finalPrice}</span>  

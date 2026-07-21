@@ -11,9 +11,12 @@
     width: 100%;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease ;
-   
-     
+}
 
+.image-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .Image-Card:hover img{

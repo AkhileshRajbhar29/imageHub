@@ -1,33 +1,66 @@
 import "./ImageDetail.css";
 import { useParams } from "react-router-dom";
+import img4 from "./images/img4.jpg";
+import img7 from "./images/img7.jpg";
+import img10 from "./images/img10.jpg"
+import img12 from "./images/img12.jpg"
 
-function ImageDetail({rating}){
 
-    const {id} = useParams();
-    console.log(id);
+function ImageDetail({images, rating}){ 
+
+const {id} = useParams();
+
+const currentImage = images.find(
+    (item) => item.id == id
+);
+
+// console.log(currentImage);
+
+if (!currentImage){
+    return <h2>Image Not Found</h2>
+}
+
+console.log(currentImage);
+
+const imageSrc = 
+currentImage.image instanceof File
+? URL.createObjectURL(currentImage.image)
+:currentImage.image;
+    
+    // console.log(id);
 
     return(
         <>
-        {/* Image Id : {id} */}
+        
         <div className="image-detail-container">
              
-                <img src="src\images\img3.jpg" alt="image" className="image"></img>
+          
+                     
+                        <div className="image-detail-mainImg">
+                        <img src={imageSrc} alt={currentImage.title} className="image"></img>
+                     
+                    </div>
+             
                 <div className="detail">
-                    <div className="description-uploader">
-                        <h3 className="title-heading"> Title</h3>
-                      ` <div className="uploader">
-                            <img src="src/images/img5.jpg"></img>
-                            <p>@akhilesh27</p>
+                    <div className="uploader-div">
+                        <div></div>
+                        <div className="uploader">
+                            <img src={img7}></img>
+                            <span>@akhilesh27</span>
                         </div>
                     </div>
-                     <p className="description-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque non id necessitatibus tempore voluptate. Unde sint sed accusantium natus nemo, explicabo dolores illo, autem quia neque blanditiis officia, temporibus repellendus!</p>
+                    <div className="description-uploader">
+                        <h3 className="title-heading"> {currentImage.title} </h3>
+                        
+                    </div>
+                     <p className="description-content"> {currentImage.description} </p>
 
                 <div className="middle-content">
 
                     <div className="like-comment-count">
                         <div className="like_comment">
                             <span className="material-symbols-outlined like-count">favorite</span> 
-                            <span class="material-symbols-outlined comment-count">comment</span>
+                            <span className="material-symbols-outlined comment-count">comment</span>
                         </div>
                         
                         <div className="ratingCount">
@@ -50,10 +83,13 @@ function ImageDetail({rating}){
 
                             
                             <div className="price-box">
-                                <span className="price-heading">Price</span><br/>
-                                <span><s>$20</s></span>
-                                <span className="offer">(25% off)</span>{"\u00A0"}{"\u00A0"}{"\u00A0"}{"\u00A0"}{"\u00A0"}
-                                <span className="final-price">$15</span>
+                                
+                                <div className="price-offer">
+                                    <span className="original-price-form"><s>₹{currentImage.originalPrice}</s></span>
+                                    <span className="offer">({currentImage.offer}% off)</span>    
+                                </div> 
+                                <span className="final-price">₹{currentImage.finalPrice}</span> <br/>
+                                
                             </div>
                         
                         <button className="buy-btn">Buy</button>
@@ -68,7 +104,7 @@ function ImageDetail({rating}){
 
                      <div className="comment-container">
                         <div className="comments">
-                        <img src="src/images/img8.jpg" className="comment-profile-img"></img>
+                        <img src={img10} className="comment-profile-img"></img>
                        <div className="comment-content">
                         <span className="comment-profile comment-userName">@satyam007</span>
                          <span className="comment-line">This series is too good👌</span>
@@ -76,7 +112,7 @@ function ImageDetail({rating}){
                         </div>
 
                      <div className="comments">
-                        <img src="src/images/img18.jpg" className="comment-profile-img"></img>
+                        <img src={img12} className="comment-profile-img"></img>
                         <div className="comment-content">
                             <span className="comment-profile comment-userName">@amar489</span>
                             <span className="comment-line">Amazing series😊👌(❁´◡`❁)</span>

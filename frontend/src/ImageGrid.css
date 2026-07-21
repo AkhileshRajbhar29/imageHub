@@ -5,15 +5,11 @@
     display: flex;
     margin-left: -16px;
     padding: 20px 20px;
-          
-    
 }
 
 .my-masonry-grid_column{
     padding-left: 16px;
     backdrop-clip: padding-box;
-     
-
 }
 
 .my-masonry-grid_column > div {

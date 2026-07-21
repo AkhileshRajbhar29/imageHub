@@ -45,7 +45,7 @@ function App(){
 
       <Route 
       path="/image/:id" 
-      element={<ImageDetail/>}
+      element={<ImageDetail images= {images}/>}
       />
 
       

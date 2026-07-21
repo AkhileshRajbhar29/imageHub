@@ -9,10 +9,12 @@ function ImageCard({item}){
     : item.image;
 
     return(
-        <Link to={'/image/${item.id}'} className="image-link">
+        <Link to={`/image/${item.id}`} className="image-link">
         <div className="Image-Card">
-            <img src={imageSrc}
-             alt="Image"/>
+             
+                <img src={imageSrc}
+                alt={item.title}/>
+             
             <div className="card-icons like-share">
                 <span className="material-symbols-outlined like-icon">favorite</span>
                 <span className="material-symbols-outlined share-icon">share</span>

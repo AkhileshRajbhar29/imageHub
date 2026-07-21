@@ -56,11 +56,14 @@ function PreviewPage({images, setImages}){
             </div>
             <div className="preview-detail-container">
                 <div className="title-userName">
-                    <h3>{formData.title }</h3>
                     <span className="userName">
-                        <img src="src/images/img21.jpg"></img>
-                        <span>@Aditya</span>
+                        <div></div>
+                        <div>
+                            <img src="src/images/img21.jpg"></img>
+                            <span>@Aditya</span>
+                        </div>
                     </span>
+                    <h3>{formData.title }</h3>
                 </div>
                 <div className="preview-detail">
                     <span>{formData.description}</span>
