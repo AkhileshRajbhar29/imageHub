@@ -7,6 +7,9 @@ import ImageDetail from "./ImageDetail.jsx";
 import UploadImageForm from "./UploadImageForm.jsx";
 import PreviewPage from "./PreviewPage.jsx";
 import { useState } from "react";
+import Favorites from "./Favorites.jsx";
+
+
 
 function App(){
 
@@ -48,11 +51,16 @@ function App(){
       element={<ImageDetail images= {images}/>}
       />
 
+      <Route
+      path="/favorites"
+      element={<Favorites/>}
+      />
       
 
       
     </Routes>
     </BrowserRouter>
+     
 
     </>
   )

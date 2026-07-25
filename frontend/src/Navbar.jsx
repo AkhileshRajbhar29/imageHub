@@ -80,7 +80,10 @@ const colors = [
                         <Link to="./upload">
                         <button className="navbar_components">Upload</button>
                         </Link>
+                        
+                        <Link to="./favorites">
                         <button className="navbar_components">Favorites</button>
+                        </Link>
                     </div>
 
                     <div className="search-profile-menu_icon">

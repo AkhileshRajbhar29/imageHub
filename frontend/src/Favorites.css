@@ -1,0 +1,139 @@
+.Favorites-section{
+    height: 100%;
+    width: 100%;
+}
+
+.Favorites-section .category-section{
+    display: none;
+}
+
+.Favorites-heading-container{
+    background-color: rgb(237, 241, 245);
+    height: 800px;
+    min-height: 400px;
+    width: 100%;
+    padding: 0px 50px;
+     
+
+}
+
+.Favorites-heading-container .Favourites-title{
+    display: flex;
+    align-items: center;
+}
+
+.Favorites-title-icon{
+    /* margin-bottom: 10px; */
+    margin: 10px 0px;
+}
+ 
+
+.Favorites-title{
+    font-size: 25px;
+    font-weight: 700;
+    
+}
+
+.Favorites-title-star{
+    font-size: 25px;
+    color:rgb(32, 82, 148);
+    
+     
+ 
+}
+
+.Favorites-cards-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+
+}
+
+.Favorites-cards{ 
+    width: 280px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.Favorites-img{
+     
+    width: 100%;
+    max-width: 100%;
+    height: 250px;
+    border-radius: 5px;
+     
+}
+.Favorites-img-title{
+    font-weight: 600;
+}
+
+.Favorite-star-icon-with-title{
+    color: rgb(255, 149, 0);
+}
+
+.uploaded-by-added-date{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 14px;
+     
+}
+
+.uploaded-by-added-date span{
+    display: flex;
+}
+.favorite-image-uploader-profile{
+    height: 30px;
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+    
+}
+
+.uploaded-by-added-date .added-date{
+    border-left: 2px solid black;
+    padding-left: 5px;
+}
+
+.Favorites-card-like-count-icon{
+    color: red;
+    margin-right:10px ;
+}
+
+.Favorites-cards-btns{
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.Favorites-cards-btns .like-btn, .share-btn, .remove-btn{
+    background-color: rgb(237, 241, 245);
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+     
+}
+
+.remove-btn{
+    display: flex;
+    justify-content: center;
+    padding-right: 6px;
+}
+
+    
+.Favorites-card-like-icon{
+        color: black;
+}
+
+
+.Favorites-cards-container hr{
+    margin: 5px;
+}
+
+.Favorites-cards .like-counts{
+    margin-bottom: 5px;
+}
