@@ -42,15 +42,18 @@ const [homeFlash, setHomeFlash] = useState(false);
 
 const handleFavoriteClick = (e) => {
     if (location.pathname === "/favorites") {
-        e.preventDefault(); // Navigation rok do
+        e.preventDefault(); 
 
         setActiveFlash(true);
 
         setTimeout(() => {
             setActiveFlash(false);
         }, 200);
+
     }
 };
+
+
 
 
 
@@ -58,10 +61,17 @@ const handleHomeClick = (e) =>{
     e.preventDefault();
     setHomeFlash(true);
 
-    setTimeout(()=>{
+    if(location.pathname === "/"){
+        setTimeout(()=>{
+            setHomeFlash(false);
+        }, 500);
+    } else{
+        setTimeout(()=>{
         setHomeFlash(false);
         navigate("/");
-    }, 500);
+    }, 200);
+
+    }
 };
 
 // For Hide and Show arrow
@@ -118,14 +128,22 @@ const colors = [
                             <input className="navbar_components search_box" type="search"/>
                         </div>
 
-                        <button className="navbar_components">Home</button>
+                        <Link to="/" onClick={handleHomeClick}>
+                        <button 
+                        className={`navbar_components ${
+                            homeFlash ? "home-flash" : ""
+                        }`}>Home</button>
+                        </Link>                
+
+
+
                         <Link to="/upload">
                         <button className="navbar_components">Upload</button>
                         </Link>
                         
                         <Link to="/favorites" onClick={handleFavoriteClick}>
                         <button className={`navbar_components ${
-                            activeFlash ? "favorite-flash":""
+                            location.pathname ==="/favorites" ? "active" : ""
                         }`}
                         >
                             Favorites</button>

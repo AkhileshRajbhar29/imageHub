@@ -186,6 +186,11 @@
     padding-top: 100px;
 }
 
+.favorite-card-link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 
 .favorite-flash{
     animation: flashBtn 0.3s ease;

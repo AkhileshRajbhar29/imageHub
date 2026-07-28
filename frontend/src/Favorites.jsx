@@ -2,6 +2,7 @@
 import "./Favorites.css";
 import Navbar from "./Navbar";
 import profile from "./images/img10.jpg";
+import { Link } from "react-router-dom";
 
 function Favorites({ favorites, setFavorites }) {
 
@@ -29,28 +30,29 @@ function Favorites({ favorites, setFavorites }) {
                         <i className="fa-solid fa-star Favorites-title-star"></i>
                     </div>
 
- 
-
                     {favorites.length === 0 ? (
 
                         <div className="empty-favorite">
                             <h2>No Favorite Images</h2>
                             <p>Add Images to Favorites</p>
                         </div>
-
                     ) : (
-
                         <div className="Favorites-cards-container">
-
                             {favorites.map((item) => (
-
+                                
+                                
                                 <div
                                     className="Favorites-cards"
                                     key={item.id}
                                 >
 
-                                    {/* Image */}
+                                    <Link
+                                to={`/image/${item.id}`}
+                                className="favorite-card-link"
+                                key={item.id}
+                                >
 
+                                    {/* Image */}
                                     <img
                                         className="Favorites-img"
                                         src={
@@ -60,9 +62,8 @@ function Favorites({ favorites, setFavorites }) {
                                         }
                                         alt={item.title}
                                     />
-
-
-
+                                    
+                                    </Link>
                                     {/* Rating */}
 
                                     <div>
@@ -89,7 +90,6 @@ function Favorites({ favorites, setFavorites }) {
 
 
                                     {/* Title */}
-
                                     <div>
 
                                         <span className="Favorites-img-title">
@@ -111,19 +111,15 @@ function Favorites({ favorites, setFavorites }) {
                                                 className="favorite-image-uploader-profile"
                                                 alt="profile"
                                             />
-
                                             <span className="uploader">
                                                 @akhilesh27
                                             </span>
-
                                         </span>
 
                                         <span className="added-date">
                                             26 July 2026
                                         </span>
-
                                     </div>
-
                                     <hr />
 
 
@@ -144,20 +140,14 @@ function Favorites({ favorites, setFavorites }) {
                                     {/* Buttons */}
 
                                     <div className="Favorites-cards-btns">
-
                                         <div className="like-btn">
-
                                             <span>Like</span>
-
                                             <i className="fa-solid fa-heart Favorites-card-like-icon"></i>
-
                                         </div>
-
 
                                         <div className="share-btn">
                                             Share
                                         </div>
-
 
                                         <div
                                             className="remove-btn"
@@ -165,7 +155,6 @@ function Favorites({ favorites, setFavorites }) {
                                         >
 
                                             <span>Remove</span>
-
                                             <span className="material-symbols-outlined">
                                                 close_small
                                             </span>
@@ -173,12 +162,19 @@ function Favorites({ favorites, setFavorites }) {
                                         </div>
 
                                     </div>
+                                    
 
                                 </div>
 
+
+                                 
+                                
                             ))}
+                            
+                            
 
                         </div>
+                        
 
                     )}
 
