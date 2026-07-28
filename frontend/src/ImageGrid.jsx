@@ -13,7 +13,7 @@ const breakpointColumnsObj = {
     500:1
 }
 
-function ImageGrid({images}) {
+function ImageGrid({images, favorites, setFavorites}) {
  
     return (
         
@@ -29,6 +29,8 @@ function ImageGrid({images}) {
                 <ImageCard
                 key={item.id}
                 item={item}
+                favorites={favorites}
+                setFavorites={setFavorites}
                 
                 />
             ))

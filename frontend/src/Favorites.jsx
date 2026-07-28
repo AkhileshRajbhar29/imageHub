@@ -1,78 +1,192 @@
+
 import "./Favorites.css";
 import Navbar from "./Navbar";
-function Favorites(){
+import profile from "./images/img10.jpg";
 
-    return(
+function Favorites({ favorites, setFavorites }) {
+
+    const removeFavorite = (id) => {
+        setFavorites(prev =>
+            prev.filter(item => item.id !== id)
+        );
+    };
+
+    return (
         <>
-        
-        <div className="Favorites-section">
-            <Navbar/>
-            <div className="Favorites-heading-container">
-            <div className="Favorites-title-icon">
-                <i className="fa-solid fa-star Favorites-title-star"></i>
-                <span className="Favorites-title"> My Favorite Collection</span>
-                <i className="fa-solid fa-star Favorites-title-star"></i>
-            </div>
+            <div className="Favorites-section">
 
-            
+                <Navbar />
 
+                <div className="Favorites-heading-container">
 
+                    <div className="Favorites-title-icon">
+                        <i className="fa-solid fa-star Favorites-title-star"></i>
 
-
-            <div  className="Favorites-cards-container">
-                <div className="Favorites-cards">
-                <div>
-                    <img src="src/images/img30.jpg" alt="Favorites-img" className="Favorites-img"/> </div>
-                    
-                    <div>
-                        <i className="fa-solid fa-star Favorite-star-icon-with-title"></i>
-                        <i className="fa-solid fa-star Favorite-star-icon-with-title"></i>
-                        <i className="fa-solid fa-star Favorite-star-icon-with-title"></i>
-                        <i className="fa-solid fa-star Favorite-star-icon-with-title"></i>
-                        <i className="fa-solid fa-star Favorite-star-icon-with-title"></i>
-                    </div>
-                    
-                    <div>
-                        <span className="Favorites-img-title">asedsaersadersdasedcsaxd</span>
-                    </div>
-                    <div className="uploaded-by-added-date">
-                        <span>
-                            <img src="src/images/img10.jpg" className="favorite-image-uploader-profile"/>
-                            <span className="uploader">Aman Kumar Modanwal</span>
+                        <span className="Favorites-title">
+                            My Favorite Collection
                         </span>
-                        <span className="added-date">25 july 2026</span>
-                    </div>
-                    <hr/>
-                    <div className="like-counts">
-                        <i class="fa-solid fa-heart Favorites-card-like-count-icon"></i>
-                        <span>350 Likes</span>
+
+                        <i className="fa-solid fa-star Favorites-title-star"></i>
                     </div>
 
-                    <div className="Favorites-cards-btns">
-                        <div className="like-btn">
-                            <span>Like</span>
-                            <i class="fa-solid fa-heart Favorites-card-like-icon"></i>
+ 
+
+                    {favorites.length === 0 ? (
+
+                        <div className="empty-favorite">
+                            <h2>No Favorite Images</h2>
+                            <p>Add Images to Favorites</p>
                         </div>
-                        <span className="share-btn">Share</span>
-                        
-                        <div className="remove-btn">
-                            <span>Remove</span>
-                            <span class="material-symbols-outlined">close_small</span>
-                              
+
+                    ) : (
+
+                        <div className="Favorites-cards-container">
+
+                            {favorites.map((item) => (
+
+                                <div
+                                    className="Favorites-cards"
+                                    key={item.id}
+                                >
+
+                                    {/* Image */}
+
+                                    <img
+                                        className="Favorites-img"
+                                        src={
+                                            item.image instanceof File
+                                                ? URL.createObjectURL(item.image)
+                                                : item.image
+                                        }
+                                        alt={item.title}
+                                    />
+
+
+
+                                    {/* Rating */}
+
+                                    <div>
+
+                                        {[1, 2, 3, 4, 5].map((star) => (
+
+                                            <i
+                                                key={star}
+                                                className={
+                                                    star <= (item.rating || 0)
+                                                        ? "material-symbols-outlined Favorite-star-icon-with-title"
+                                                        : "fa-solid fa-star Favorite-star-icon-with-title"
+                                                }
+                                            ></i>
+
+                                        ))}
+
+                                        <span className="final-rating">
+                                            ({item.rating || 0})
+                                        </span>
+
+                                    </div>
+
+
+
+                                    {/* Title */}
+
+                                    <div>
+
+                                        <span className="Favorites-img-title">
+                                            {item.title}
+                                        </span>
+
+                                    </div>
+
+
+
+                                    {/* Uploader */}
+
+                                    <div className="uploaded-by-added-date">
+
+                                        <span>
+
+                                            <img
+                                                src={profile}
+                                                className="favorite-image-uploader-profile"
+                                                alt="profile"
+                                            />
+
+                                            <span className="uploader">
+                                                @akhilesh27
+                                            </span>
+
+                                        </span>
+
+                                        <span className="added-date">
+                                            26 July 2026
+                                        </span>
+
+                                    </div>
+
+                                    <hr />
+
+
+                                    {/* Likes */}
+
+                                    <div className="like-counts">
+
+                                        <i className="fa-solid fa-heart Favorites-card-like-count-icon"></i>
+
+                                        <span>
+                                            {item.likes || 0} Likes
+                                        </span>
+
+                                    </div>
+
+
+
+                                    {/* Buttons */}
+
+                                    <div className="Favorites-cards-btns">
+
+                                        <div className="like-btn">
+
+                                            <span>Like</span>
+
+                                            <i className="fa-solid fa-heart Favorites-card-like-icon"></i>
+
+                                        </div>
+
+
+                                        <div className="share-btn">
+                                            Share
+                                        </div>
+
+
+                                        <div
+                                            className="remove-btn"
+                                            onClick={() => removeFavorite(item.id)}
+                                        >
+
+                                            <span>Remove</span>
+
+                                            <span className="material-symbols-outlined">
+                                                close_small
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            ))}
+
                         </div>
-                    </div>
+
+                    )}
+
                 </div>
 
             </div>
-
-
-             
-
-            
-        </div>
-        </div>
         </>
-    )
+    );
 }
 
 export default Favorites;

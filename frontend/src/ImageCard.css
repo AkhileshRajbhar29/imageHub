@@ -62,14 +62,37 @@ div .card-icons{
     /* background-color: rgba(198, 196, 238, 0.9);    */
     background-color: white;
     padding: 8px;
-    border-radius: 50px; 
+    border-radius: 50%; 
     cursor: pointer;
     user-select: none;
     transition: 0.3s;
 }
 
-.card-icons span:hover{
-    transform: scale(1.1);
+.card-icons .like-icon{
+    color: rgb(54, 52, 52);
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: .25s;
+    cursor: pointer;
 }
 
- 
+.card-icons span:hover, .like-icon:hover{
+    transform: scale(1.1);
+    transition:.3s;
+}
+
+.like-icon.liked{
+    color:#ff1744;
+    transform:scale(1.15);
+}
+
+.like-icon{
+    transition:all .25s ease;
+    font-size:24px;
+    
+}

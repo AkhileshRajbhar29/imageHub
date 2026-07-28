@@ -2,11 +2,16 @@ import "./Home.css"
 import ImageGrid from "./ImageGrid"
 import Navbar from "./Navbar"
 
-function Home({images}){
+function Home({images, favorites, setFavorites}){
     return(
         <>
         <Navbar/>
-        <ImageGrid images={images}/>
+        <ImageGrid 
+        images={images}
+        favorites={favorites}
+        setFavorites={setFavorites}
+        
+        />
         </>
     )
 }

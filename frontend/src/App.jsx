@@ -14,7 +14,7 @@ import Favorites from "./Favorites.jsx";
 function App(){
 
   const[images, setImages] = useState([]);
-
+  const[favorites, setFavorites] = useState([]);
 
   return(
     <>
@@ -24,7 +24,21 @@ function App(){
 
       <Route 
       path="/" 
-      element={<Home images={images}/>}
+      element={<Home images={images}
+      favorites={favorites}
+      setFavorites={setFavorites}
+      />
+      }
+      />
+
+      <Route
+      path="/favorites"
+      element={
+      <Favorites
+        favorites={favorites}
+        setFavorites={setFavorites}
+      />
+      }
       />
 
       <Route 
@@ -51,10 +65,7 @@ function App(){
       element={<ImageDetail images= {images}/>}
       />
 
-      <Route
-      path="/favorites"
-      element={<Favorites/>}
-      />
+      
       
 
       

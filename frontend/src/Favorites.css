@@ -44,16 +44,25 @@
 
 .Favorites-cards-container{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
-
+    justify-content: start;
+    align-items: start;
 }
 
 .Favorites-cards{ 
-    width: 280px;
+    /* min-width: 280px; */
+    max-width: 300px;
     background-color: white;
     padding: 10px;
     border-radius: 10px;
+    transition: 0.3s;
+}
+
+
+.Favorites-cards:hover{
+    transform: translateY(-8);
+    box-shadow: 10px 10px 10px rgb(rgb(19, 11, 11, 0.9));
 }
 
 .Favorites-img{
@@ -62,8 +71,22 @@
     max-width: 100%;
     height: 250px;
     border-radius: 5px;
+    transition: 0.3s;
+     
+    
      
 }
+
+.Favorites-img:hover{
+    transform: scale(1.01);
+     
+     
+}
+
+.final-rating{
+    font-size: 14px;
+}
+
 .Favorites-img-title{
     font-weight: 600;
 }
@@ -81,6 +104,10 @@
     font-style: italic;
     font-size: 14px;
      
+}
+
+.uploaded-by-added-date .uploader{
+    color: blue;
 }
 
 .uploaded-by-added-date span{
@@ -107,14 +134,26 @@
 .Favorites-cards-btns{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 16px;
+    gap: 5px;
+    
+    
 }
 
 .Favorites-cards-btns .like-btn, .share-btn, .remove-btn{
     background-color: rgb(237, 241, 245);
+    width: 100%;
     padding: 2px 10px;
     border-radius: 5px;
     font-weight: 600;
+    /* border-right: 2px solid black;
+    border-top: 2px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
      
 }
 
@@ -136,4 +175,35 @@
 
 .Favorites-cards .like-counts{
     margin-bottom: 5px;
+}
+
+
+.empty-favorite{
+    height: 400px;
+    width: 100%;
+    border: 2px solid rgb(137, 131, 131);
+    text-align: center;
+    padding-top: 100px;
+}
+
+
+.favorite-flash{
+    animation: flashBtn 0.3s ease;
+}
+
+@keyframes flashBtn{
+    0%{
+        background:#ffb703;
+        transform:scale(1);
+    }
+
+    50%{
+        background:#ffd166;
+        transform:scale(1.05);
+    }
+
+    100%{
+        background:inherit;
+        transform:scale(1);
+    }
 }

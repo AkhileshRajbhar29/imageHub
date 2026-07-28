@@ -3,6 +3,16 @@ import { FaSearch } from "react-icons/fa";
 import { category } from "./category";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useLocation } from "react-router-dom";
+ 
+
+
+
+
+
+
 
 function Navbar(){
     const categoryRef = useRef(null);
@@ -21,6 +31,38 @@ const scrollRight = () =>{
     });
 };
 
+
+
+
+const location = useLocation();
+const navigate = useNavigate();
+const [activeFlash, setActiveFlash] = useState(false);
+const [homeFlash, setHomeFlash] = useState(false);
+
+
+const handleFavoriteClick = (e) => {
+    if (location.pathname === "/favorites") {
+        e.preventDefault(); // Navigation rok do
+
+        setActiveFlash(true);
+
+        setTimeout(() => {
+            setActiveFlash(false);
+        }, 200);
+    }
+};
+
+
+
+const handleHomeClick = (e) =>{
+    e.preventDefault();
+    setHomeFlash(true);
+
+    setTimeout(()=>{
+        setHomeFlash(false);
+        navigate("/");
+    }, 500);
+};
 
 // For Hide and Show arrow
 
@@ -77,12 +119,16 @@ const colors = [
                         </div>
 
                         <button className="navbar_components">Home</button>
-                        <Link to="./upload">
+                        <Link to="/upload">
                         <button className="navbar_components">Upload</button>
                         </Link>
                         
-                        <Link to="./favorites">
-                        <button className="navbar_components">Favorites</button>
+                        <Link to="/favorites" onClick={handleFavoriteClick}>
+                        <button className={`navbar_components ${
+                            activeFlash ? "favorite-flash":""
+                        }`}
+                        >
+                            Favorites</button>
                         </Link>
                     </div>
 
