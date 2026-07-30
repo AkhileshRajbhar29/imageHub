@@ -38,6 +38,7 @@ const location = useLocation();
 const navigate = useNavigate();
 const [activeFlash, setActiveFlash] = useState(false);
 const [homeFlash, setHomeFlash] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
 
 
 const handleFavoriteClick = (e) => {
@@ -156,13 +157,15 @@ const colors = [
                          <FaSearch />
                         </button>
 
-                    <div className="profile_photo">
-                        <span className="material-symbols-outlined profile">
-                        person
-                        </span>
-                    </div>
+                    <Link to="profile" className="profile-link">
+                        <div className="profile_photo">
+                            <span className="material-symbols-outlined profile">person</span>
+                        </div>
+                    </Link>
 
-                    <div className="menu-icon">
+                    <div className="menu-icon"
+                     onClick={()=>setMenuOpen(true)}
+                    >
                         ☰
                     </div>
 
@@ -213,6 +216,40 @@ const colors = [
 
 
                  
+            </div>
+
+            {
+                menuOpen && (
+                    <duv
+                        className="sidebar-overlay"
+                        onClick={()=> setMenuOpen(false)}
+                    ></duv>
+                )
+            }
+
+            <div
+                className={`sidebar ${menuOpen ? "open" : ""}`}
+                onClick={(e)=> e.stopPropagation()}
+            >
+                <div className="sidebar-header">
+                    <span>Menu</span>
+                    <span
+                        className="material-symbols-outlined close-btn"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Close
+                    </span>
+
+                </div>
+                <div className="sidebar-items">
+                    <Link to="/" className="sidebar-link">Home</Link>
+                    <Link to="/upload" className="sidebar-link">Upload</Link>
+                    <Link to="/favorites" className="sidebar-link">Favorites</Link>
+                    <Link className="sidebar-link">Help</Link>
+                    <Link className="sidebar-link">Setting</Link>
+                    <Link className="sidebar-link">LogOut</Link>
+                    <span className="sidebar-link sidebar-logout-span">LogOut</span>
+                </div>
             </div>
         </>
     )

@@ -8,6 +8,7 @@ import UploadImageForm from "./UploadImageForm.jsx";
 import PreviewPage from "./PreviewPage.jsx";
 import { useState } from "react";
 import Favorites from "./Favorites.jsx";
+import Profile from "./Profile.jsx";
 
 
 
@@ -65,12 +66,12 @@ function App(){
       element={<ImageDetail images= {images}/>}
       />
 
-      
-      
+      <Route path="/profile" element={<Profile/>}/>
 
       
     </Routes>
     </BrowserRouter>
+    {/* <Profile/> */}
      
 
     </>
