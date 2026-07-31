@@ -11,8 +11,12 @@ import img9 from "/src/images/img9.jpg";
 import img10 from "/src/images/img10.jpg";
 import img11 from "/src/images/img11.jpg";
 import img12 from "/src/images/img12.jpg";
+import { Link } from "react-router-dom";
+import { useState } from "react"; 
 
 function Profile(){
+
+    const [showMenu, setShowMenu] = useState(false);
 
     return(
         <>
@@ -21,9 +25,44 @@ function Profile(){
                     <div className="header-icons">
                         <span class="material-symbols-outlined">notifications</span>
                         <span class="material-symbols-outlined">3p</span>
-                        <span className="material-symbols-outlined share-icon">share_windows</span>
-                        <span className="material-symbols-outlined add-icon">add_2</span>
-                        <span className="material-symbols-outlined menu-icon">menu</span>
+                        <Link to="/upload" className="">
+                            <span className="material-symbols-outlined add-icon">add_2</span>
+                        </Link>
+                        
+                        <span className={`material-symbols-outlined menu-icon ${showMenu ? "active":""}`}
+                        onClick={()=>setShowMenu (!showMenu)}
+                        >
+                            menu
+                        </span>
+                        {
+                            showMenu && (
+                                <div className="profile-menu">
+
+                            
+                                            <Link to="/account-detail"  className="about-account-link menu-items">
+                                            <span class="material-symbols-outlined about-account-icon">account_circle</span>
+                                            <span  className="account-detail">Account Detail</span>
+                                            </Link>
+                                     
+                                    
+                                        <Link to="/favorites" className="favorite-link menu-items">
+                                            <span class="material-symbols-outlined favorite-icon">favorite</span>
+                                            <span  className="menu-favorite">Favorite</span>
+                                        </Link>
+                                    
+                                    <Link className="archive-link menu-items">
+                                        <span class="material-symbols-outlined Archive-icon">disabled_visible</span>
+                                        <span>Archive</span>
+                                    </Link>
+                                    <Link className="help-link menu-items">
+                                        <span class="material-symbols-outlined help-icon">help_center</span>
+                                        <span>Help</span>
+                                    </Link>
+                                    <button className="logOut-btn">LogOut</button>
+                                    <button className="delete-account-btn">Delete Account</button>
+                                </div>
+                            )
+                        }
                     </div>
                     <hr/>
                     

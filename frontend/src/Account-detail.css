@@ -1,0 +1,83 @@
+.Account-detail-container{
+    margin: 50px;
+
+
+}
+
+.Account-detail-container .profile-image-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.Account-detail-profile-img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;    
+}
+
+.profile-image-div span{
+    font-size:22px;
+    font-weight: 600;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.detail-tables{
+    width: 600px;
+   margin: 40px auto;
+}
+
+.detail-tables{
+    width: min(600px, 90%);
+    margin: 40px auto;
+}
+
+.detail-tables p{
+    font-size: 22px;
+    font-weight: 600;
+     
+}
+
+.detail-tables table{
+    margin-bottom: 20px;
+}
+ 
+
+.account-detail-logout-btn{
+    border: 1px solid rgb(156, 155, 155);
+    color: white;
+    background-color: rgb(225, 13, 13);
+    text-align: center;
+    border-radius: 20px;
+    padding: 5px;
+ 
+}
+
+.account-detail-delete-account-btn{
+    border: 1px solid rgb(156, 155, 155);
+    color: white;
+    background-color: rgb(51, 49, 49);
+    text-align: center;
+    border-radius: 20px;  
+    padding: 5px; 
+}
+
+tr .label{
+    font-weight: 500;
+     
+}
+
+tr .table-data{
+    padding-left: 50px;
+}
+
+.basic-details, .Statistics-table, .creator-table{
+    background-color: rgb(165, 158, 157);
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+}
+ 

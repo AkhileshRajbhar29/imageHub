@@ -31,7 +31,36 @@ function ImageCard({item, favorites, setFavorites}){
             setFavorites(prev=>[...prev,item]);
         }
     }
+
+
+    const downloadImage = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const imageUrl = 
+        item.image instanceof File
+        ? URL.createObjectURL(item.image)
+        : item.image;
+
+        const link = document.createElement("a");
+        link.href = imageUrl;
+
+        link.download = item.title
+        ? `${item.title}.jpg`
+        : "ImageHub_Image.jpg";
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        if (item.image instanceof File) {
+         setTimeout(() => URL.revokeObjectURL(imageUrl), 100);
+    }
+
+    };
     
+
+
 
     return(
         
@@ -86,7 +115,9 @@ function ImageCard({item, favorites, setFavorites}){
                     : "heart_plus"
                 }
                 </span>
-                <span className="material-symbols-outlined download-icon">download</span>
+                <span className="material-symbols-outlined download-icon"
+                onClick={downloadImage}
+                >download</span>
             </div>
 
         </div>

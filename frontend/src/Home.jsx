@@ -9,7 +9,7 @@ function Home({images, favorites, setFavorites}){
         <ImageGrid 
         images={images}
         favorites={favorites}
-        setFavorites={setFavorites}
+        setFavorites={setFavorites  }
         
         />
         </>

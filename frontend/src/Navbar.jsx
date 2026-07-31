@@ -247,7 +247,7 @@ const colors = [
                     <Link to="/favorites" className="sidebar-link">Favorites</Link>
                     <Link className="sidebar-link">Help</Link>
                     <Link className="sidebar-link">Setting</Link>
-                    <Link className="sidebar-link">LogOut</Link>
+                    {/* <Link className="sidebar-link">LogOut</Link> */}
                     <span className="sidebar-link sidebar-logout-span">LogOut</span>
                 </div>
             </div>

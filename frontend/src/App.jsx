@@ -9,7 +9,7 @@ import PreviewPage from "./PreviewPage.jsx";
 import { useState } from "react";
 import Favorites from "./Favorites.jsx";
 import Profile from "./Profile.jsx";
-
+import Account_detail from "./Account-detail.jsx";
 
 
 function App(){
@@ -68,10 +68,12 @@ function App(){
 
       <Route path="/profile" element={<Profile/>}/>
 
+      {/* <Route path="/profle/uploadImageForm" element={<UploadImageForm/>}/> */}
+      <Route path="/account-detail" element={<Account_detail/>}/>
       
     </Routes>
     </BrowserRouter>
-    {/* <Profile/> */}
+    {/* <Account_detail/> */}
      
 
     </>
