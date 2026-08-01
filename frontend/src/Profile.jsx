@@ -23,8 +23,8 @@ function Profile(){
             <div className="Profile-container">
                 <div className="header-icons-section">
                     <div className="header-icons">
-                        <span class="material-symbols-outlined">notifications</span>
-                        <span class="material-symbols-outlined">3p</span>
+                        <span className="material-symbols-outlined">notifications</span>
+                        <span className="material-symbols-outlined">3p</span>
                         <Link to="/upload" className="">
                             <span className="material-symbols-outlined add-icon">add_2</span>
                         </Link>
@@ -40,22 +40,22 @@ function Profile(){
 
                             
                                             <Link to="/account-detail"  className="about-account-link menu-items">
-                                            <span class="material-symbols-outlined about-account-icon">account_circle</span>
+                                            <span className="material-symbols-outlined about-account-icon">account_circle</span>
                                             <span  className="account-detail">Account Detail</span>
                                             </Link>
                                      
                                     
                                         <Link to="/favorites" className="favorite-link menu-items">
-                                            <span class="material-symbols-outlined favorite-icon">favorite</span>
+                                            <span className="material-symbols-outlined favorite-icon">favorite</span>
                                             <span  className="menu-favorite">Favorite</span>
                                         </Link>
                                     
-                                    <Link className="archive-link menu-items">
-                                        <span class="material-symbols-outlined Archive-icon">disabled_visible</span>
+                                    <Link to="/Archive" className="archive-link menu-items">
+                                        <span className="material-symbols-outlined Archive-icon">disabled_visible</span>
                                         <span>Archive</span>
                                     </Link>
-                                    <Link className="help-link menu-items">
-                                        <span class="material-symbols-outlined help-icon">help_center</span>
+                                    <Link to="/Help" className="help-link menu-items">
+                                        <span className="material-symbols-outlined help-icon">help_center</span>
                                         <span>Help</span>
                                     </Link>
                                     <button className="logOut-btn">LogOut</button>

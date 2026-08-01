@@ -1,5 +1,6 @@
 .Account-detail-container{
     margin: 50px;
+     
 
 
 }
@@ -73,8 +74,11 @@ tr .table-data{
 }
 
 .basic-details, .Statistics-table, .creator-table{
-    background-color: rgb(165, 158, 157);
-    color: black;
+    /* background-color: rgb(165, 158, 157); */
+    background-color: rgb(92, 92, 250);
+    
+    /* color: black; */
+    color: white;
     border-radius: 5px;
     padding: 5px;
     width: 200px;

@@ -1,6 +1,6 @@
 .Profile-container{ 
     margin: 20px 50px;
-    /* margin-top: px; */
+    user-select: none;
 }
 
 .Profile-container .header-icons-section{
@@ -23,7 +23,9 @@
     box-shadow: 0 6px 18px rgba(0,0,0,.15);
      
 }
-
+/* .header-icons-section{
+    user-select: none;
+} */
 .header-icons span{
     font-size: 30px;
     border: 1px solid black;

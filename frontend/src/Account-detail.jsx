@@ -14,10 +14,11 @@ function Account_detail(){
 
                 <div className="detail-tables">
 
-                    
+                    <p className="basic-details">Besic Details</p>
                     <table className="account-detail-table">
-                        <p className="basic-details">Besic Details</p>
-                        <tr>
+                        
+                        <tbody>
+                            <tr>
                             <td className="label">Username:</td>
                             <td className="table-data">akhilesh_a51</td>
                         </tr>
@@ -38,12 +39,15 @@ function Account_detail(){
                             <td className="label">Bio:</td>
                             <td className="table-data">Jai Shree Ram 🙏🙏🙏<br/> I love traveling<br/> Engineer🧑‍💻🖥️.</td>
                         </tr>
+                        </tbody>
                     </table>
 
-                   
+
+                   <p className="Statistics-table">Statistics</p>
                     <table className="account-detail-table">
-                        <p className="Statistics-table">Statistics</p>
-                        <tr>
+                        
+                        <tbody>
+                            <tr>
                             <td className="label">Joined Date:</td>
                             <td className="table-data">12 july 2020</td>
                         </tr>
@@ -71,11 +75,14 @@ function Account_detail(){
                             <td className="label">Downloads: </td>
                             <td className="table-data">2446</td>
                         </tr>
+                        </tbody>
                     </table>
 
-                    <table className="account-detail-table">
-                        <p className="creator-table">Creator</p>
-                        <tr>
+                    <p className="creator-table">Creator</p>
+                    <table className="account-detail-table">    
+                        <tbody>
+
+                            <tr>
                             <td className="label">Image Sold:</td>
                             <td className="table-data">3032</td>
                         </tr>
@@ -83,6 +90,7 @@ function Account_detail(){
                             <td className="label">Wallet</td>
                             <td className="table-data">$324</td>
                         </tr>
+                        </tbody>
                     </table>
 
                     <p className="account-detail-logout-btn">LogOut</p>
