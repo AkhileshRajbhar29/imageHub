@@ -10,7 +10,8 @@ import { useState } from "react";
 import Favorites from "./Favorites.jsx";
 import Profile from "./Profile.jsx";
 import Account_detail from "./Account-detail.jsx";
-
+import Help from "./Help.jsx";
+import Archive from "./Archive.jsx";
 
 function App(){
 
@@ -71,9 +72,13 @@ function App(){
       {/* <Route path="/profle/uploadImageForm" element={<UploadImageForm/>}/> */}
       <Route path="/account-detail" element={<Account_detail/>}/>
       
+      <Route path="/Help" element={<Help/>}/>
+
+      <Route path="/Archive" element={<Archive/>}/>
+
     </Routes>
     </BrowserRouter>
-    {/* <Account_detail/> */}
+    {/* <Archive/> */}
      
 
     </>
