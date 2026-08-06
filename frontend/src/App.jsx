@@ -12,6 +12,8 @@ import Profile from "./Profile.jsx";
 import Account_detail from "./Account-detail.jsx";
 import Help from "./Help.jsx";
 import Archive from "./Archive.jsx";
+import Signup from "./Signup.jsx";
+import Login from "./Login.jsx";
 
 function App(){
 
@@ -78,8 +80,9 @@ function App(){
 
     </Routes>
     </BrowserRouter>
-    {/* <Archive/> */}
+    {/* <Signup/> */}
      
+    <Login/>
 
     </>
   )
