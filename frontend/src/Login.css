@@ -6,6 +6,7 @@
     background-color: rgb(233, 230, 230);
     padding: 15px;
     user-select: none;
+    margin-bottom: 20px;
 }
 
  .Login-container{
@@ -252,6 +253,17 @@
     color: rgb(80, 80, 252);
 }
 
+
+.login-btn {
+    border: none;
+    cursor: pointer;
+}
+
+.login-error {
+    color: red;
+    font-size: 14px;
+    margin: 8px 0;
+}
 
 @media (max-width:1050px){
     .Login-container-frame{

@@ -6,6 +6,55 @@ import "./Login.css";
 function Login(){
     const [showPassword, setShowPassword] = useState(false);
 
+    const[identifier, setIdentifier] = useState("");
+    const[password, setPassword] = useState("");
+    const[loading, setLoading] = useState(false);
+    const[error, setError] = useState("");
+
+    const handleLogin = async (e) =>{
+        e.preventDefault();
+
+        try{
+            setLoading(true);
+            setError("");
+
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/auth/login`,
+                {
+                    method: "Post",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+
+                    body: JSON.stringify({
+                        identifier,
+                        password
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            if(!response.ok){
+                setError(data.message);
+                return;
+            }
+
+            console.log("Login Successful:", data);
+
+            //Save JWT token
+
+            localStorage.setItem("token", data.token);
+        }
+        catch(error){
+            console.log(error);
+            setError("Unable to connect server");
+        }
+        finally{
+            setLoading(false);
+        }
+    };
+
     return(
         <>
             <div className="Login-container-frame">
@@ -22,14 +71,22 @@ function Login(){
                             <p className="paragraph">Sign in to continue exploring amazing images.</p>
                         </div>
 
-                        <div className="login-input-div">
+
+                        <form onSubmit={handleLogin}>
+                                                    <div className="login-input-div">
                             <div className="login-label-box">
                                 <span className="material-symbols-outlined">account_circle</span>
-                                <label htmlFor="username">Username</label>
+                                <label htmlFor="username">Username or Email</label>
                             </div>
                             <div className="login-input-box">
                                 <span className="material-symbols-outlined">account_circle</span>
-                                <input id="username" placeholder="Enter your Username"></input>
+                                <input 
+                                    id="username" 
+                                    type="text" 
+                                    placeholder="Enter your Username or Email" 
+                                    value={identifier} 
+                                    onChange={(e) => setIdentifier(e.target.value)}>
+                                </input>
                             </div>
                              
                         </div>
@@ -41,7 +98,13 @@ function Login(){
                             </div>
                             <div className="login-input-box">
                                 <span className="material-symbols-outlined">lock</span>
-                                <input id="password" type={showPassword ? "text" : "password"} placeholder="Enter your Password"></input>
+                                <input id="password" 
+                                type={showPassword ? "text" : "password"} 
+                                placeholder="Enter your Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                >
+                                </input>
                                 <span
                                     className="material-symbols-outlined eye-icon"
                                     onClick={() => setShowPassword(!showPassword)}
@@ -53,11 +116,27 @@ function Login(){
                         </div>
                         
                         <p className="login-para-forgot-password">Forgot Password?</p>
+                        
 
-                        <div className="login-btn">
+                        {
+                            error && (
+                                <p className="login-error">
+                                    {error}
+                                </p>
+                            )
+                        }
+
+                        <button 
+                        className="login-btn"
+                        type="submit"
+                        disabled={loading}
+                        >
                             <span className="material-symbols-outlined">login</span>
                             <p>Login</p>
-                        </div>
+                        </button>
+
+                        </form>
+
 
                         <div className="login-or-continue-with-container">
                             <hr/>           
