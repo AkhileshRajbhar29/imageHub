@@ -6,16 +6,17 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext"; 
  
-
-
-
 
 
 
 
 function Navbar(){
     const categoryRef = useRef(null);
+
+
 
 const scrollLeft = () =>{
     categoryRef.current.scrollBy({
@@ -33,12 +34,20 @@ const scrollRight = () =>{
 
 
 
+const { user, loading, logout } = useContext(AuthContext);
+
+//console.log("Current User:", user);
 
 const location = useLocation();
 const navigate = useNavigate();
 const [activeFlash, setActiveFlash] = useState(false);
 const [homeFlash, setHomeFlash] = useState(false);
 const [menuOpen, setMenuOpen] = useState(false);
+
+const handleLogout = () =>{
+    logout();
+    navigate("/login", {replace : true});
+};
 
 
 const handleFavoriteClick = (e) => {
@@ -117,7 +126,20 @@ const colors = [
     return(
          
         <>
+
+             
             <nav className="Navbar_container">
+
+                {
+                    loading ? (
+                        <p>Loading...</p>
+                    ) : user ? (
+                        <p>Welcome, {user.username}</p>
+                    ):(
+                        <p>Not logged in</p>
+                    )
+                }
+
                  
                     <div className="logo">
                         <img src="src\images\logo.jpeg" className="logo_img"></img>
@@ -220,10 +242,10 @@ const colors = [
 
             {
                 menuOpen && (
-                    <duv
+                    <div
                         className="sidebar-overlay"
                         onClick={()=> setMenuOpen(false)}
-                    ></duv>
+                    ></div>
                 )
             }
 
@@ -248,7 +270,7 @@ const colors = [
                     <Link to="/Help" className="sidebar-link">Help</Link>
                     <Link className="sidebar-link">Setting</Link>
                     {/* <Link className="sidebar-link">LogOut</Link> */}
-                    <span className="sidebar-link sidebar-logout-span">LogOut</span>
+                    <span className="sidebar-link sidebar-logout-span" onClick={handleLogout}>Logout</span>
                 </div>
             </div>
         </>

@@ -1,0 +1,10 @@
+* [33m8421e73[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Connect login page with backend authentication
+* [33mfc68e3b[m Setup MongoDB connection and implement authentication APIs
+* [33mb1f5151[m Setup backend and MongoDB Atlas connection
+* [33me9cdaca[m Backend setup compelete
+* [33ma02b8bf[m Implement responsive login and signup UI
+* [33mdbf2677[m feat: add Archive page with hidden images layout
+* [33m754af08[m feat: add Help Center page with FAQ and support section
+* [33m4d2fa10[m Create account detail page, profile sidebar menu and improve profile navigation
+* [33m9b906bb[m Implement static user profile page
+* [33mee2777b[m Implement image detail navigation from favorites and enhance navbar UX

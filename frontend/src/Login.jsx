@@ -1,19 +1,29 @@
 import login1 from "C:/Projects/mini_project/imageHub/frontend/src/images/login-image7.jpg";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
+
 
 import "./Login.css";
 function Login(){
+
+    const {setUser} = useContext(AuthContext);
+    // const navigate = useNavigate();
+
+
     const [showPassword, setShowPassword] = useState(false);
 
     const[identifier, setIdentifier] = useState("");
     const[password, setPassword] = useState("");
     const[loading, setLoading] = useState(false);
     const[error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) =>{
         e.preventDefault();
 
+       
         try{
             setLoading(true);
             setError("");
@@ -35,9 +45,12 @@ function Login(){
 
             const data = await response.json();
 
-            if(!response.ok){
-                setError(data.message);
-                return;
+             
+
+            if(response.ok){
+                localStorage.setItem("token", data.token);
+                setUser(data.user);
+                navigate("/", {replace:true});
             }
 
             console.log("Login Successful:", data);

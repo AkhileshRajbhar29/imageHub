@@ -14,6 +14,9 @@ import Help from "./Help.jsx";
 import Archive from "./Archive.jsx";
 import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
+import PublicRoute from "./PublicRoute.jsx";
+  
 
 function App(){
 
@@ -27,62 +30,114 @@ function App(){
       
 
       <Route 
-      path="/" 
-      element={<Home images={images}
-      favorites={favorites}
-      setFavorites={setFavorites}
-      />
-      }
-      />
-
-      <Route
-      path="/favorites"
-      element={
-      <Favorites
-        favorites={favorites}
-        setFavorites={setFavorites}
-      />
-      }
+        path="/" 
+        element={
+          <Home images={images}
+            favorites={favorites}
+            setFavorites={setFavorites}
+          />
+        }
       />
 
-      <Route 
-      path="/upload" 
-      element={ 
-      <UploadImageForm 
-      images={images} 
-      setImages={setImages}
-      />
-      }
-      />
+     
 
-      <Route 
-      path="/preview" 
-      element={<PreviewPage
-      images={images}
-      setImages={setImages}
-      />
-      }
-      />
+
 
       <Route 
       path="/image/:id" 
       element={<ImageDetail images= {images}/>}
       />
 
-      <Route path="/profile" element={<Profile/>}/>
 
-      {/* <Route path="/profle/uploadImageForm" element={<UploadImageForm/>}/> */}
-      <Route path="/account-detail" element={<Account_detail/>}/>
-      
       <Route path="/Help" element={<Help/>}/>
 
-      <Route path="/Archive" element={<Archive/>}/>
+      <Route 
+      path="/login" 
+      element={
+        <PublicRoute>
+          <Login />
+        </PublicRoute>
+      } />
+
+      <Route path="/signup" 
+      element={
+        <PublicRoute>
+          <Signup />
+        </PublicRoute>
+      } />
+
+      
+
+
+
+      //Protected Routes
+
+      <Route
+      path="/favorites"
+      element={
+      <ProtectedRoute>
+        <Favorites
+          favorites={favorites}
+          setFavorites={setFavorites}
+        />
+      </ProtectedRoute>
+      }
+      />
+
+      <Route 
+      path="/upload" 
+      element={ 
+      <ProtectedRoute>
+        <UploadImageForm 
+          images={images} 
+          setImages={setImages}
+        />
+      </ProtectedRoute>
+      }
+      />
+
+      <Route 
+      path="/preview" 
+      element={
+      <ProtectedRoute>
+        <PreviewPage
+          images={images}
+          setImages={setImages}
+        />
+      </ProtectedRoute>
+      }
+      />
+
+      
+
+      <Route path="/profile" element={
+        <ProtectedRoute>
+          <Profile/>
+        </ProtectedRoute>
+      }/>
+
+      {/* <Route path="/profle/uploadImageForm" element={<UploadImageForm/>}/> */}
+      <Route path="/account-detail" 
+      element={
+        <ProtectedRoute>
+          <Account_detail/>
+        </ProtectedRoute>
+      }/>
+      
+      
+
+      <Route path="/Archive" 
+      element={
+        <ProtectedRoute>
+          <Archive/>
+        </ProtectedRoute>
+      }/>
 
     </Routes>
     </BrowserRouter>
     {/* <Signup/> */}
      
-    <Login/>
+     
 
     </>
   )
