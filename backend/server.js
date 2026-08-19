@@ -1,5 +1,8 @@
+require ("dotenv").config();
+
 const express = require ("express");
-const dotenv = require ("dotenv");
+// const dotenv = require ("dotenv");
+const mongoose = require("mongoose");
 const cors = require ("cors");
 const authRoutes = require("./routes/authRoutes");
 const imageRoutes = require("./routes/imageRoutes");
@@ -7,19 +10,14 @@ const imageRoutes = require("./routes/imageRoutes");
 //Database Connection
 const connectDB = require("./config/db");
 
-dotenv.config();
+// dotenv.config();
 
 const app = express();
 
 //connect MongoDB
 connectDB();
 
-
-// app.use(
-//     cors({
-//         origin: "http://localhost:5173"
-//     })
-// );
+ 
 
 app.use(cors());
 app.use(express.json());

@@ -44,27 +44,58 @@ function UploadImageForm({images, setImages}){
     const finalPrice =originalPrice-((originalPrice * offer)/100);
 
 
-    const handleUpload = () => {
+    const handleUpload = async () => {
+    if (!selectedImage) {
+        alert("Please select an image");
+        return;
+    }
 
-        if(!selectedImage){
-            alert("Please select an image");
+    if (!formData.title.trim()) {
+        alert("Please Enter Title");
+        return;
+    }
+
+    try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Please login first");
+            navigate("/login");
             return;
         }
-        if(!formData.title.trim()){
-            alert("Please Enter Title");
-            return;
+
+        const data = new FormData();
+
+        data.append("image", selectedImage);
+        data.append("title", formData.title);
+        data.append("description", formData.description);
+        data.append("price", finalPrice);
+
+        const response = await fetch("http://localhost:5000/api/images", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: data
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message || "Image upload failed");
         }
 
-        const newImage = {
-            id: Date.now(),
-            image: selectedImage,
-            ...formData,
-            finalPrice
-        };
+        console.log("Uploaded Image:", result);
 
-        setImages((prev) => [...prev, newImage]);
+        alert("Image uploaded successfully!");
+
         navigate("/");
-    };
+
+    } catch (error) {
+        console.error("Upload error:", error);
+        alert(error.message);
+    }
+};
 
  
 
