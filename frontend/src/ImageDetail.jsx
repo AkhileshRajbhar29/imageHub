@@ -1,33 +1,27 @@
 import "./ImageDetail.css";
 import { useParams } from "react-router-dom";
-import img4 from "./images/img4.jpg";
 import img7 from "./images/img7.jpg";
 import img10 from "./images/img10.jpg"
 import img12 from "./images/img12.jpg"
 
 
-function ImageDetail({images, rating}){ 
+function ImageDetail({images}){ 
 
 const {id} = useParams();
 
 const currentImage = images.find(
-    (item) => item.id == id
+    (item) => item._id === id
 );
 
-// console.log(currentImage);
 
 if (!currentImage){
     return <h2>Image Not Found</h2>
 }
 
-console.log(currentImage);
+const imageSrc =  currentImage.imageUrl;
 
-const imageSrc = 
-currentImage.image instanceof File
-? URL.createObjectURL(currentImage.image)
-:currentImage.image;
+const rating =0;
     
-    // console.log(id);
 
     return(
         <>

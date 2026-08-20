@@ -1,7 +1,5 @@
-// import Favorites from "./Favorites.jsx";
 import { useState, useRef } from "react";
 import "./ImageCard.css";
-import { Link, useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function ImageCard({item, favorites, setFavorites}){
@@ -12,20 +10,17 @@ function ImageCard({item, favorites, setFavorites}){
     const [liked, setLiked] = useState(false);
  
 
-    const imageSrc =
-    item.image instanceof File
-    ? URL.createObjectURL(item.image)
-    : item.image;
+    const imageSrc = item.imageUrl;
 
 
     const isFavorite = 
-    favorites.some(fav => fav.id === item.id);
+    favorites.some(fav => fav._id === item._id);
 
     const toggleFavorite = (e) => {
         e.stopPropagation();
 
         if(isFavorite){
-            setFavorites (prev => prev.filter(f=> f.id!==item.id));
+            setFavorites (prev => prev.filter(f=> f._id!==item._id));
         }
         else{
             setFavorites(prev=>[...prev,item]);
@@ -36,11 +31,10 @@ function ImageCard({item, favorites, setFavorites}){
     const downloadImage = async (e) => {
         e.preventDefault();
         e.stopPropagation();
+ 
+        const imageUrl = item.imageUrl;
 
-        const imageUrl = 
-        item.image instanceof File
-        ? URL.createObjectURL(item.image)
-        : item.image;
+
 
         const link = document.createElement("a");
         link.href = imageUrl;
@@ -52,10 +46,7 @@ function ImageCard({item, favorites, setFavorites}){
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-
-        if (item.image instanceof File) {
-         setTimeout(() => URL.revokeObjectURL(imageUrl), 100);
-    }
+ 
 
     };
     
@@ -68,7 +59,7 @@ function ImageCard({item, favorites, setFavorites}){
              onClick={()=>{
                 clearTimeout(clickTimer.current);
         clickTimer.current = setTimeout(()=>{
-            navigate(`/image/${item.id}`);
+            navigate(`/image/${item._id}`);
         },250);
     }}
 

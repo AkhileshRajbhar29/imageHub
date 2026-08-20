@@ -6,7 +6,7 @@ import ImageGrid from "./ImageGrid.jsx";
 import ImageDetail from "./ImageDetail.jsx";
 import UploadImageForm from "./UploadImageForm.jsx";
 import PreviewPage from "./PreviewPage.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Favorites from "./Favorites.jsx";
 import Profile from "./Profile.jsx";
 import Account_detail from "./Account-detail.jsx";
@@ -16,12 +16,35 @@ import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
 import PublicRoute from "./PublicRoute.jsx";
+
+
   
 
 function App(){
 
   const[images, setImages] = useState([]);
   const[favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/images");
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "Failed to fetch images");
+            }
+
+            setImages(data.images);
+
+        } catch (error) {
+            console.error("Fetch images error:", error);
+        }
+    };
+
+    fetchImages();
+}, []);
 
   return(
     <>

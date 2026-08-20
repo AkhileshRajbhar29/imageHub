@@ -27,7 +27,7 @@ function ImageGrid({images, favorites, setFavorites}) {
         {
             images.map((item)=>(
                 <ImageCard
-                key={item.id}
+                key={item._id}
                 item={item}
                 favorites={favorites}
                 setFavorites={setFavorites}
