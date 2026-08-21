@@ -1,11 +1,11 @@
 require ("dotenv").config();
 
 const express = require ("express");
-// const dotenv = require ("dotenv");
 const mongoose = require("mongoose");
 const cors = require ("cors");
 const authRoutes = require("./routes/authRoutes");
 const imageRoutes = require("./routes/imageRoutes");
+const favoriteRoutes = require("./routes/favoriteRoute");
 
 //Database Connection
 const connectDB = require("./config/db");
@@ -24,6 +24,8 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/images", imageRoutes);
+app.use("/api/favorites", favoriteRoutes);
+
 
 app.get("/", (req,res)=>{
     res.send("ImageHub is running on root");

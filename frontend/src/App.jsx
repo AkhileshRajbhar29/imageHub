@@ -46,6 +46,53 @@ function App(){
     fetchImages();
 }, []);
 
+
+
+
+useEffect(() => {
+    const fetchFavorites = async () => {
+        try {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                return;
+            }
+
+            const response = await fetch(
+                "http://localhost:5000/api/favorites",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            const favoriteImages = data.favorites.map(
+                favorite => favorite.image
+            );
+
+            setFavorites(favoriteImages);
+
+        } catch (error) {
+            console.error(
+                "Fetch favorites error:",
+                error
+            );
+        }
+    };
+
+    fetchFavorites();
+}, []);
+
+
+
+
   return(
     <>
     <BrowserRouter>

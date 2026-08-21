@@ -16,16 +16,86 @@ function ImageCard({item, favorites, setFavorites}){
     const isFavorite = 
     favorites.some(fav => fav._id === item._id);
 
-    const toggleFavorite = (e) => {
-        e.stopPropagation();
+    // const toggleFavorite = (e) => {
+    //     e.stopPropagation();
 
-        if(isFavorite){
-            setFavorites (prev => prev.filter(f=> f._id!==item._id));
+    //     if(isFavorite){
+    //         setFavorites (prev => prev.filter(f=> f._id!==item._id));
+    //     }
+    //     else{
+    //         setFavorites(prev=>[...prev,item]);
+    //     }
+    // }
+
+
+    const toggleFavorite = async (e) => {
+    e.stopPropagation();
+
+    try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Please login first");
+            navigate("/login");
+            return;
         }
-        else{
-            setFavorites(prev=>[...prev,item]);
+
+        if (isFavorite) {
+
+            const response = await fetch(
+                `http://localhost:5000/api/favorites/${item._id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            setFavorites(prev =>
+                prev.filter(fav => fav._id !== item._id)
+            );
+
+        } else {
+
+            const response = await fetch(
+                `http://localhost:5000/api/favorites/${item._id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            setFavorites(prev => [
+                ...prev,
+                item
+            ]);
         }
+
+    } catch (error) {
+        console.error("Favorite error:", error);
+        alert(error.message || "Something went wrong");
     }
+};
+
+
+
+
+
 
 
     const downloadImage = async (e) => {

@@ -6,11 +6,41 @@ import { Link } from "react-router-dom";
 
 function Favorites({ favorites, setFavorites }) {
 
-    const removeFavorite = (id) => {
-        setFavorites(prev =>
-            prev.filter(item => item.id !== id)
+    const removeFavorite = async (id) => {
+    try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Please login first");
+            return;
+        }
+
+        const response = await fetch(
+            `http://localhost:5000/api/favorites/${id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
         );
-    };
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to remove favorite");
+        }
+
+        // Remove from frontend state
+        setFavorites(prev =>
+            prev.filter(item => item._id !== id)
+        );
+
+    } catch (error) {
+        console.error("Remove favorite error:", error);
+        alert(error.message);
+    }
+};
 
     return (
         <>
@@ -43,23 +73,19 @@ function Favorites({ favorites, setFavorites }) {
                                 
                                 <div
                                     className="Favorites-cards"
-                                    key={item.id}
+                                    key={item._id}
                                 >
 
                                     <Link
-                                to={`/image/${item.id}`}
+                                to={`/image/${item._id}`}
                                 className="favorite-card-link"
-                                key={item.id}
+                                key={item._id}
                                 >
 
                                     {/* Image */}
                                     <img
                                         className="Favorites-img"
-                                        src={
-                                            item.image instanceof File
-                                                ? URL.createObjectURL(item.image)
-                                                : item.image
-                                        }
+                                        src={item.imageUrl}
                                         alt={item.title}
                                     />
                                     
@@ -151,7 +177,7 @@ function Favorites({ favorites, setFavorites }) {
 
                                         <div
                                             className="remove-btn"
-                                            onClick={() => removeFavorite(item.id)}
+                                            onClick={() => removeFavorite(item._id)}
                                         >
 
                                             <span>Remove</span>

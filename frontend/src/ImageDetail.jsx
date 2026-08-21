@@ -40,7 +40,7 @@ const rating =0;
                         <div></div>
                         <div className="uploader">
                             <img src={img7}></img>
-                            <span>@akhilesh27</span>
+                            <span>{currentImage.owner?.email}</span>
                         </div>
                     </div>
                     <div className="description-uploader">
