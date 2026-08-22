@@ -1,3 +1,6 @@
+import logo from "./images/logo.jpeg";
+
+
 import "./Navbar.css";
 import { FaSearch } from "react-icons/fa";
 import { category } from "./category";
@@ -142,7 +145,7 @@ const colors = [
 
                  
                     <div className="logo">
-                        <img src="src\images\logo.jpeg" className="logo_img"></img>
+                        <img src={logo} className="logo_img"></img>
                     </div>
 
                     <div className="navbar_components_container">

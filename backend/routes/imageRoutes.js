@@ -1,6 +1,6 @@
 const express = require ("express");
 const router = express.Router();
-const { createImage, getImages} = require("../controllers/imageController");
+const { createImage, getImages, getImageById} = require("../controllers/imageController");
 
 const authMiddleware = require("../middleware/authMiddleware");
 
@@ -14,5 +14,6 @@ router.post(
 );
 
 router.get("/", getImages);
+router.get("/:id", getImageById);
 
 module.exports = router;

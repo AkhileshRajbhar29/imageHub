@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./ImageCard.css";
 import { useNavigate } from "react-router-dom";
 
@@ -7,8 +7,47 @@ function ImageCard({item, favorites, setFavorites}){
 
     const navigate = useNavigate();
     const clickTimer = useRef(null);
+
     const [liked, setLiked] = useState(false);
- 
+    const [likeCount, setLikeCount] = useState(0);
+
+
+useEffect(() => {
+    const fetchLikeInfo = async () => {
+        try {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                return;
+            }
+
+            const response = await fetch(
+                `http://localhost:5000/api/likes/${item._id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            setLiked(data.liked);
+            setLikeCount(data.likeCount);
+
+        } catch (error) {
+            console.error("Fetch like info error:", error);
+        }
+    };
+
+    fetchLikeInfo();
+
+}, [item._id]);
+  
 
     const imageSrc = item.imageUrl;
 
@@ -16,17 +55,69 @@ function ImageCard({item, favorites, setFavorites}){
     const isFavorite = 
     favorites.some(fav => fav._id === item._id);
 
-    // const toggleFavorite = (e) => {
-    //     e.stopPropagation();
 
-    //     if(isFavorite){
-    //         setFavorites (prev => prev.filter(f=> f._id!==item._id));
-    //     }
-    //     else{
-    //         setFavorites(prev=>[...prev,item]);
-    //     }
-    // }
+    const toggleLike = async (e) => {
+    e.stopPropagation();
 
+    try {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Please login first");
+            navigate("/login");
+            return;
+        }
+
+        if (liked) {
+
+            const response = await fetch(
+                `http://localhost:5000/api/likes/${item._id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            setLiked(false);
+            setLikeCount(prev => Math.max(0, prev - 1));
+
+        } else {
+
+            const response = await fetch(
+                `http://localhost:5000/api/likes/${item._id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message);
+            }
+
+            setLiked(true);
+            setLikeCount(prev => prev + 1);
+        }
+
+    } catch (error) {
+        console.error("Like error:", error);
+        alert(error.message || "Something went wrong");
+    }
+};
+
+  
 
     const toggleFavorite = async (e) => {
     e.stopPropagation();
@@ -149,10 +240,8 @@ function ImageCard({item, favorites, setFavorites}){
             <div className="card-icons like-share">
                 <span className={`material-symbols-outlined like-icon ${liked ? "liked" : ""}`}
                 onClick={(e)=>{
-                    e.stopPropagation();
                     clearTimeout(clickTimer.current);
-
-                    setLiked(prev => !prev);
+                    toggleLike(e);
                 }}
                 >
                     {liked ?  (

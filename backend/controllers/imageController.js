@@ -62,7 +62,7 @@ const createImage = async (req, res)=>{
 const getImages = async (req, res) => {
     try {
         const images = await Image.find()
-            .populate("owner", "name email")
+            .populate("owner", "username email")
             .sort({ createdAt: -1 });
 
         res.status(200).json({
@@ -82,8 +82,40 @@ const getImages = async (req, res) => {
 
 
 
+const getImageById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const image = await Image.findById(id)
+            .populate("owner", "username email");
+
+        if (!image) {
+            return res.status(404).json({
+                success: false,
+                message: "Image not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            image
+        });
+
+    } catch (error) {
+        console.log("Get image by id error:", error.message);
+
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch image"
+        });
+    }
+};
+
+
+
 
 module.exports= {
     createImage,
-    getImages
+    getImages,
+    getImageById
 }

@@ -115,7 +115,7 @@ useEffect(() => {
 
       <Route 
       path="/image/:id" 
-      element={<ImageDetail images= {images}/>}
+      element={<ImageDetail/>}
       />
 
 
